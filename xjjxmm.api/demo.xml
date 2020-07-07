@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>xjjxmm.api</name>
+    </assembly>
+    <members>
+        <member name="M:xjjxmm.api.AutoMapper.CustomProfile.#ctor">
+            <summary>
+            配置构造函数，用来创建关系映射
+            </summary>
+        </member>
+        <member name="T:xjjxmm.api.Controllers.CategoryController">
+            <summary>
+            类别控制器
+            </summary>
+        </member>
+        <member name="M:xjjxmm.api.Controllers.CategoryController.Get">
+            <summary>
+            获取所有category
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:xjjxmm.api.Controllers.WeatherForecastController">
+            <summary>
+            这是测试用的control
+            </summary>
+        </member>
+        <member name="M:xjjxmm.api.Controllers.WeatherForecastController.Get">
+            <summary>
+            或许weather
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:xjjxmm.DTO.CreateCategoryDTO.Level">
+            <summary>
+            层级
+            </summary>
+        </member>
+        <member name="P:xjjxmm.DTO.CreateCategoryDTO.ParentId">
+            <summary>
+            父ID，默认 去掉
+            </summary>
+        </member>
+        <member name="M:xjjxmm.Helper.JwtHelper.IssueJwt(xjjxmm.Helper.JwtHelper.TokenModelJwt)">
+            <summary>
+            颁发JWT字符串
+            </summary>
+            <param name="tokenModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:xjjxmm.Helper.JwtHelper.TokenModelJwt">
+            <summary>
+            令牌
+            </summary>
+        </member>
+        <member name="P:xjjxmm.Helper.JwtHelper.TokenModelJwt.Uid">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:xjjxmm.Helper.JwtHelper.TokenModelJwt.Role">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="P:xjjxmm.Helper.JwtHelper.TokenModelJwt.Work">
+            <summary>
+            职能
+            </summary>
+        </member>
+        <member name="P:xjjxmm.Models.Category.Seq">
+            <summary>
+            顺序
+            </summary>
+        </member>
+        <member name="P:xjjxmm.Models.Category.Level">
+            <summary>
+            层级
+            </summary>
+        </member>
+        <member name="P:xjjxmm.Models.MessageModel`1.status">
+            <summary>
+            状态码
+            </summary>
+        </member>
+        <member name="P:xjjxmm.Models.MessageModel`1.success">
+            <summary>
+            操作是否成功
+            </summary>
+        </member>
+        <member name="P:xjjxmm.Models.MessageModel`1.msg">
+            <summary>
+            返回信息
+            </summary>
+        </member>
+        <member name="P:xjjxmm.Models.MessageModel`1.response">
+            <summary>
+            返回数据集合
+            </summary>
+        </member>
+    </members>
+</doc>
