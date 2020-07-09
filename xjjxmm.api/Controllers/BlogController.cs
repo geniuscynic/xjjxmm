@@ -16,32 +16,29 @@ namespace xjjxmm.api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BlogController : ControllerBase
+    public class BlogController : BaseController<BlogService>
     {
-        private readonly BlogService _service;
-        private readonly IMapper _mapper;
-        public BlogController(BlogService service, IMapper mapper)
+       
+        public BlogController(BlogService service, IMapper mapper):base(service, mapper)
         {
-            _service = service;
-            _mapper = mapper;
+           ;
         }
 
         // GET: api/<BlogController>
         [HttpGet("p/{page:int?}")]
-        public async Task<MessageModel<PageBlogs>> Get(int? page = 1)
+        public async Task<MessageModel<PageModel<Blog>>> Get(int? page = 1)
         {
             int offset = (page.GetValueOrDefault(1) - 1) * CommonConstant.Page_Size;
 
             var blogs = await _service.Get(offset, CommonConstant.Page_Size);
 
-            return new MessageModel<PageBlogs>
+            return new MessageModel<PageModel<Blog>>()
             {
                 msg = CommonConstant.Message_Successfully,
-                response = new PageBlogs()
+                response = new PageModel<Blog>()
                 {
-                    blogs = blogs,
-                    page = page,
-                    pageSize = CommonConstant.Page_Size
+                    results = blogs,
+                    page = page
                 }
             };
         }
@@ -51,7 +48,7 @@ namespace xjjxmm.api.Controllers
         [HttpGet("{id}")]
         public async Task<MessageModel<Blog>> Get(long id)
         {
-            var blog = await _service.Find(id);
+            var blog = await _service.FindById(id);
             return new MessageModel<Blog>
             {
                 msg = CommonConstant.Message_Successfully ,
@@ -86,7 +83,7 @@ namespace xjjxmm.api.Controllers
             //});
 
 
-           var ca = await _service.Save(model);
+           var ca = await _service.Add(model);
 
            var result = _mapper.Map<ResultBlogDTO>(model);
 

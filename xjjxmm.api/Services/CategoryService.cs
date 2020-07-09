@@ -16,7 +16,7 @@ namespace xjjxmm.Services
         }
 
 
-        public override async Task<Category> Save(Category category)
+        public override async Task<Category> Add(Category category)
         {
             var seq = await _context.Categories.AsNoTracking()
                 .Where(c => c.Level == category.Level && c.ParentId == category.ParentId)
@@ -24,7 +24,7 @@ namespace xjjxmm.Services
 
             category.Seq = seq + 1;
 
-            return await base.Save(category);
+            return await base.Add(category);
             //_context.Entry<Category>(category).State = EntityState.Added;
             //await _context.SaveChangesAsync();
 

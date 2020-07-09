@@ -18,12 +18,13 @@ namespace xjjxmm.Services
         }
 
 
-        public async Task<Blog> Find(long id)
+        public async Task<Blog> FindById(long id)
         {
 
             return await _context.Blogs
                 .Include(t=>t.Blog_Tags)
                 .ThenInclude(ts=>ts.Tag)
+                .Include(t=>t.Commments)
                 .SingleOrDefaultAsync(t=>t.Id == id);
         }
 
@@ -32,7 +33,7 @@ namespace xjjxmm.Services
         //    return await _context.Blog .Take (20).ToListAsync();
         //}
 
-        public override async Task<Blog> Save(Blog blog)
+        public override async Task<Blog> Add(Blog blog)
         {
 
             //foreach(var bt in blog.Blog_Tags) { 
@@ -55,7 +56,7 @@ namespace xjjxmm.Services
 
             //_context.Set<Blog>().Add(blog);
             //await  _context.SaveChangesAsync();
-            return await base.Save(blog);
+            return await base.Add(blog);
             //_context.Entry<Category>(category).State = EntityState.Added;
             //await _context.SaveChangesAsync();
 

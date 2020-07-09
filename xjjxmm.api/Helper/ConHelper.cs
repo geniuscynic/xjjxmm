@@ -8,11 +8,11 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using static xjjxmm.Helper.JwtHelper;
+using static xjjxmm.Helper.ConHelper;
 
 namespace xjjxmm.Helper
 {
-    public class JwtHelper
+    public class ConHelper
     {
         /// <summary>
         /// 颁发JWT字符串
@@ -137,7 +137,7 @@ namespace xjjxmm.Helper
             {
                 if (tokenHeader.Length >= 128)
                 {
-                    TokenModelJwt tm = JwtHelper.SerializeJwt(tokenHeader);
+                    TokenModelJwt tm = ConHelper.SerializeJwt(tokenHeader);
 
                     //授权 Claim 关键
                     var claimList = new List<Claim>();

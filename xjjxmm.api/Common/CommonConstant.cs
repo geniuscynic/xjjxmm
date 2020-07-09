@@ -16,6 +16,9 @@ namespace xjjxmm.Common
         }
 
         public const int Page_Size = 5;
+
+        public const string Option_JWT = "JWT";
+        //public const string JWT_Key = "Key";
     }
 
     public static class Exten

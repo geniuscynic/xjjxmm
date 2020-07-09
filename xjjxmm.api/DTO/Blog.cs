@@ -49,10 +49,4 @@ namespace xjjxmm.DTO
     }
 
 
-    public class PageBlogs
-    {
-        public IEnumerable<Blog> blogs { get; set; }
-        public int? page { get; set; }
-        public int pageSize { get; set; } = CommonConstant.Page_Size;
-    }
 }

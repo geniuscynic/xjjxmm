@@ -18,14 +18,12 @@ namespace xjjxmm.api.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoryController : ControllerBase
+    public class CategoryController : BaseController<CategoryService>
     {
-        private readonly CategoryService _service;
-        private readonly IMapper _mapper;
-        public CategoryController(CategoryService service, IMapper mapper)
+      
+        public CategoryController(CategoryService service, IMapper mapper) : base(service, mapper)
         {
-            _service = service;
-            _mapper = mapper;
+           
         }
 
         /// <summary>
@@ -55,7 +53,7 @@ namespace xjjxmm.api.Controllers
         public async Task<MessageModel<Category>> Post([FromBody] CreateCategoryDTO category)
         {
             var model = _mapper.Map<Category>(category);
-            var ca =  await _service.Save(model);
+            var ca =  await _service.Add(model);
 
             return new MessageModel<Category>()
             {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using xjjxmm.Common;
 
 namespace xjjxmm.Models
 {
@@ -18,10 +19,12 @@ namespace xjjxmm.Models
         /// <summary>
         /// 返回信息
         /// </summary>
-        public string msg { get; set; } = "服务器异常";
+        public string msg { get; set; } = CommonConstant.Message_Successfully;
         /// <summary>
         /// 返回数据集合
         /// </summary>
         public T response { get; set; }
     }
+
+    
 }

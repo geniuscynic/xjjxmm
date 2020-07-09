@@ -16,19 +16,26 @@ namespace xjjxmm.Services
         }
 
 
-        public override async Task<Commment> Save(Commment commment)
+        public override async Task<Commment> Add(Commment commment)
         {
-            //var seq = await _context.Categories.AsNoTracking()
-            //    .Where(c => c.Level == 1)
-            //    .MaxAsync(c => c.Seq);
+            var floor = await Query(t=> t.BlogId == commment.BlogId)
+                .MaxAsync(c => c.Floor);
 
+            commment.Floor = floor + 1;
             //category.Seq = seq + 1;
 
-            return await base.Save(commment);
+            return await base.Add(commment);
             //_context.Entry<Category>(category).State = EntityState.Added;
             //await _context.SaveChangesAsync();
 
             //return category;
+        }
+
+        public async Task<IEnumerable<Commment>> GetByBlogId(long blogId)
+        {
+            var comments = await Query(t => t.BlogId == blogId).ToListAsync();
+
+            return comments;
         }
     }
 }

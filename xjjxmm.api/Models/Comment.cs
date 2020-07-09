@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace xjjxmm.Models
@@ -19,12 +19,14 @@ namespace xjjxmm.Models
 
 
         public long? ParentId { get; set; }
+
+        [JsonIgnore]
         [ForeignKey("ParentId")]
         public Commment ParentComment { get; set; }
 
         public List<Commment> ChildComments { get; set; }
 
-        public long? BlogId { get; set; }
+        public long BlogId { get; set; }
 
         [ForeignKey("BlogId")]
         public Blog Blog { get; set; }

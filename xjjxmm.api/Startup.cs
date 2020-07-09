@@ -19,13 +19,14 @@ using xjjxmm.Helper;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Swashbuckle.AspNetCore.Filters;
+using xjjxmm.Common;
 
 namespace demo
 {
     public class Startup
     {
         const string ApiName = "XJJXMM";
-        const string Version= "v1";
+        const string Version = "v1";
 
         public Startup(IConfiguration configuration)
         {
@@ -37,11 +38,15 @@ namespace demo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+
             services.AddAutoMapper(typeof(Startup));//这是AutoMapper的2.0新特性
 
             #region add service
             services.AddScoped<CategoryService, CategoryService>();
             services.AddScoped<BlogService, BlogService>();
+            services.AddScoped<TagService, TagService>();
+            services.AddScoped<CommentService, CommentService>();
             #endregion
 
             //数据库
@@ -103,7 +108,9 @@ namespace demo
             //      options.AddPolicy("SystemOrAdmin", policy => policy.RequireRole("Admin", "System"));
             //  });
 
-            SecurityKey securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("dsf677877dsdsfdsf443fdgfdjdsfdsfdfdfsdfjjjj"));
+           var jwtOptions = Configuration.GetOptions<JWTOptions>(CommonConstant.Option_JWT);
+            
+            SecurityKey securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.Key));
             services.AddAuthentication("Bearer")
                 .AddJwtBearer(c =>
                 {
@@ -113,10 +120,10 @@ namespace demo
                         IssuerSigningKey = securityKey,
 
                         ValidateIssuer = true,
-                        ValidIssuer = "issuer",
+                        ValidIssuer = jwtOptions.Issuer,
 
                         ValidateAudience = true,
-                        ValidAudience = "audience",
+                        ValidAudience = jwtOptions.Audience,
 
 
                         RequireExpirationTime = true,

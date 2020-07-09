@@ -16,8 +16,12 @@ namespace xjjxmm.api.AutoMapper
         public CustomProfile()
         {
             CreateMap<CreateCategoryDTO, Category>();
+
             CreateMap<CreateBlogDTO, Blog >();
             CreateMap<Blog, ResultBlogDTO>();
+
+
+            CreateMap<CreateCommentDTO, Commment>();
         }
     }
 }
